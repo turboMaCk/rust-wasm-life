@@ -6,9 +6,9 @@ const GRID_COLOR = "#cccccc";
 const DEAD_COLOR = "#FFFFFF";
 const ALIVE_COLOR = "#000000";
 
-const universe = Universe.new();
-const width = universe.width();
-const height = universe.height();
+const width = Math.floor(window.innerWidth / (CELL_SIZE + 1)) - 1;
+const height = Math.floor(window.innerHeight / (CELL_SIZE + 1)) - 1;
+const universe = Universe.new(width, height);
 
 const canvas = document.getElementById("game-of-life-canvas");
 canvas.height = (CELL_SIZE + 1) * height + 1;
