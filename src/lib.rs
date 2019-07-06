@@ -5,13 +5,6 @@ use wasm_bindgen::prelude::*;
 extern crate fixedbitset;
 use fixedbitset::FixedBitSet;
 
-#[wasm_bindgen]
-#[repr(u8)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum Cell {
-    Dead = 0,
-    Alive = 1,
-}
 
 #[wasm_bindgen]
 pub struct Universe {
@@ -22,10 +15,7 @@ pub struct Universe {
 
 #[wasm_bindgen]
 impl Universe {
-    pub fn new() -> Universe {
-        let width = 64;
-        let height = 64;
-
+    pub fn new(width: u32, height: u32) -> Universe {
         let size = (width * height) as usize;
         let mut cells = FixedBitSet::with_capacity(size);
 
@@ -65,14 +55,6 @@ impl Universe {
         };
 
         self.cells = next;
-    }
-
-    pub fn width(&self) -> u32 {
-        self.width
-    }
-
-    pub fn height(&self) -> u32 {
-        self.height
     }
 
     pub fn cells(&self) -> *const u32 {
